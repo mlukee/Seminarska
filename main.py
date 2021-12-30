@@ -42,6 +42,206 @@ def odstrani_karakter():
     text_result.delete(1.0, "end")
     text_result.insert(1.0, izpis)
 
+# 2. & 3. točka
+
+def pretvori(st, baza1, baza2):
+    for i in str(st):
+        if i == "A":
+            i = 10
+        elif i == "B":
+            i = 11
+        elif i == "C":
+            i = 12
+        elif i == "D":
+            i = 13
+        elif i == "E":
+            i = 14
+        elif i == "F":
+            i = 15
+        if int(i) >= baza1:
+            text_result.insert(1.0, "Neveljaven vnos")
+            return 0
+    temp = 0
+    k = len(str(st)) - 1
+    for i in str(st):
+        if i == "A":
+            i = 10
+        elif i == "B":
+            i = 11
+        elif i == "C":
+            i = 12
+        elif i == "D":
+            i = 13
+        elif i == "E":
+            i = 14
+        elif i == "F":
+            i = 15
+        temp += int(i) * baza1**k
+        k -= 1
+    rez = ""
+    deli = 1
+    while True: # vir za emulacijo do .. while zanke: https://www.educba.com/do-while-loop-in-python/
+        deli = temp // baza2
+        ost = temp % baza2
+        if ost == 10:
+            ost = "A"
+        elif ost == 11:
+            ost = "B"
+        elif ost == 12:
+            ost = "C"
+        elif ost == 13:
+            ost = "D"
+        elif ost == 14:
+            ost = "E"
+        elif ost == 15:
+            ost = "F"
+        rez += str(ost)
+        temp = deli
+        if deli == 0:
+            break
+    rez = rez[::-1]
+    text_result.insert(1.0, rez)
+    return rez
+
+counter = 0
+
+def pretvorba():
+    global counter
+    global stev
+    global b1
+    global b2
+    counter += 1
+    print(counter) # test
+    if counter == 1:
+        stev = text_result.get(1.0, "end-1c")
+        # pocisti()
+        text_result.delete(1.0, "end")
+        text_result.insert(1.0, "Iz baze: ")
+    elif counter == 2:
+        b1 = int(str(text_result.get(1.0, "end-1c")).split(" ")[2]) # sketchy...
+        # pocisti()
+        text_result.delete(1.0, "end")
+        text_result.insert(1.0, "V bazo: ")
+        # preberi vnos in ga shrani v globalno spremenljivko
+    elif counter == 3:
+        counter = 0
+        b2 = int(str(text_result.get(1.0, "end-1c")).split(" ")[2]) # sketchy...
+        # pocisti()
+        text_result.delete(1.0, "end")
+        pretvori(stev, b1, b2)
+
+def l_and(tmp1, tmp2):
+    rez = ""
+    if len(tmp1) != len(tmp2):
+        text_result.insert(1.0, "Števili nista iste dolžine!")
+        return
+    for i in range(len(tmp1)):
+        rez += str(int(tmp1[i]) and int(tmp2[i]))
+    text_result.insert(1.0, rez)
+    return rez
+
+def l_or(tmp1, tmp2):
+    rez = ""
+    if len(tmp1) != len(tmp2):
+        text_result.insert(1.0, "Števili nista iste dolžine!")
+        return
+    for i in range(len(tmp1)):
+        rez += str(int(tmp1[i]) or int(tmp2[i]))
+    text_result.insert(1.0, rez)
+    return rez
+
+def l_xor(tmp1, tmp2):
+    rez = ""
+    if len(tmp1) != len(tmp2):
+        text_result.insert(1.0, "Števili nista iste dolžine!")
+        return
+    for i in range(len(tmp1)):
+        rez += str((int(not int(tmp1[i])) and int(tmp2[i])) or (int(tmp1[i]) and int(not int(tmp2[i]))))
+    text_result.insert(1.0, rez)
+    return rez
+
+def l_nor(tmp1, tmp2):
+    if len(tmp1) != len(tmp2):
+        text_result.insert(1.0, "Števili nista iste dolžine!")
+        return
+    rez = ""
+    vmes = l_or(tmp1, tmp2)
+    for i in vmes:
+        if i == "1":
+            rez += "0"
+        else:
+            rez += "1"
+    # pocisti()
+    text_result.delete(1.0, "end")
+    text_result.insert(1.0, rez)
+
+def l_nand(tmp1, tmp2):
+    if len(tmp1) != len(tmp2):
+        text_result.insert(1.0, "Števili nista iste dolžine!")
+        return
+    rez = ""
+    vmes = l_and(tmp1, tmp2)
+    for i in vmes:
+        if i == "1":
+            rez += "0"
+        else:
+            rez += "1"
+    # pocisti()
+    text_result.delete(1.0, "end")
+    text_result.insert(1.0, rez)
+
+def neg():
+    rez = ""
+    st = text_result.get(1.0, "end-1c")
+    for i in st:
+        if i == "1":
+            rez += "0"
+        else:
+            rez += "1"
+    # pocisti()
+    text_result.delete(1.0, "end")
+    text_result.insert(1.0, rez)
+
+def l_xnor(tmp1, tmp2):
+    if len(tmp1) != len(tmp2):
+        text_result.insert(1.0, "Števili nista iste dolžine!")
+        return
+    rez = ""
+    vmes = l_xor(tmp1, tmp2)
+    for i in vmes:
+        if i == "1":
+            rez += "0"
+        else:
+            rez += "1"
+    # pocisti()
+    text_result.delete(1.0, "end")
+    text_result.insert(1.0, rez)
+
+def sprozi():
+    tmp2 = text_result.get(1.0, "end-1c")
+    # pocisti()
+    text_result.delete(1.0, "end")
+    if n == 1:
+        l_and(tmp1, tmp2)
+    elif n == 2:
+        l_or(tmp1, tmp2)
+    elif n == 3:
+        l_xor(tmp1, tmp2)
+    elif n == 4:
+        l_nor(tmp1, tmp2)
+    elif n == 5:
+        l_xnor(tmp1, tmp2)
+    elif n == 6:
+        l_nand(tmp1, tmp2)
+
+def nalozi(k):
+    global tmp1
+    global n
+    n = k
+    tmp1 = text_result.get(1.0, "end-1c")
+    # pocisti()
+    text_result.delete(1.0, "end")
+
 root = tk.Tk()
 root.title("Kalkulator")
 root.geometry("375x350")
@@ -50,7 +250,7 @@ ikona = PhotoImage(file='calculator_icon.png')
 root.iconphoto(True, ikona)
 
 text_result = tk.Text(root, height=2, width=20, font=("Arial", 24))
-text_result.grid(columnspan=5)
+text_result.grid(columnspan=7)
 
 
 btn_eksponent = tk.Button(root, text="^", command=lambda: dodaj_v_racun('^'), width=5, font=("Arial", 14))
@@ -96,9 +296,30 @@ btn_pocisti.grid(row=7, column = 3)
 btn_brisiEnZnak = tk.Button(root, text="<=", command=lambda: odstrani_karakter(), width=5, font=("Arial", 14))
 btn_brisiEnZnak.grid(row=7, column = 4)
 
-root.mainloop()
+# 2. točka: PRETVRAJANJE ŠTEVIL
+btn_pretvori = tk.Button(root, text="pretvori", command=lambda: pretvorba(), width=12, font=("Arial", 14))
+btn_pretvori.grid(row=2, column=3, columnspan=2)
 
-# test GitHub (30. 12. 2021)
+# 3. točka: LOGIČNE OPERACIJE
+btn_and = tk.Button(root, text="AND", command=lambda: nalozi(1), width=5, font=("Arial", 14))
+btn_and.grid(row=2, column=5)
+btn_or = tk.Button(root, text="OR", command=lambda: nalozi(2), width=5, font=("Arial", 14))
+btn_or.grid(row=3, column=5)
+btn_xor = tk.Button(root, text="XOR", command=lambda: nalozi(3), width=5, font=("Arial", 14))
+btn_xor.grid(row=4, column=5)
+btn_nor = tk.Button(root, text="NOR", command=lambda: nalozi(4), width=5, font=("Arial", 14))
+btn_nor.grid(row=5, column=5)
+btn_xnor = tk.Button(root, text="XNOR", command=lambda: nalozi(5), width=5, font=("Arial", 14))
+btn_xnor.grid(row=6, column=5)
+btn_nand = tk.Button(root, text="NAND", command=lambda: nalozi(6), width=5, font=("Arial", 14))
+btn_nand.grid(row=7, column=5)
+btn_neg = tk.Button(root, text="NEG", command=lambda: neg(), width=5, font=("Arial", 14))
+btn_neg.grid(row=8, column=5)
+
+btn_neg = tk.Button(root, text="=2", command=lambda: sprozi(), width=13, font=("Arial", 14))
+btn_neg.grid(row=8, column=1, columnspan=2) # vir za pisanje v okence: https://www.geeksforgeeks.org/how-to-get-the-input-from-tkinter-text-box/
+
+root.mainloop()
 
 
 
