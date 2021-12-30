@@ -98,5 +98,7 @@ btn_brisiEnZnak.grid(row=7, column = 4)
 
 root.mainloop()
 
+# test GitHub (30. 12. 2021)
+
 
 
