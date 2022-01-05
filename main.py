@@ -19,7 +19,7 @@ osnovniKalkulator.pack(fill="both", expand=1)
 logicniOperatorji.pack(fill="both", expand=1)
 
 moj_okvir.add(osnovniKalkulator, text="Kalkulator")
-moj_okvir.add(logicniOperatorji, text="Logicni operatorji")
+moj_okvir.add(logicniOperatorji, text="Logični operatorji")
 
 
 
@@ -121,7 +121,7 @@ def pocistiLogicnaVrata():
     global izpis
     calculation = ""
     izpis = ""
-    pretvorbaSt.delete(1.0, "end")    
+    text_result.delete(1.0, "end")    
 
 def odstrani_karakter():
     global calculation
@@ -147,7 +147,7 @@ def pretvori(st, baza1, baza2):
         elif i == "F":
             i = 15
         if int(i) >= baza1:
-            pretvorbaSt.insert(1.0, "Neveljaven vnos")
+            text_result.insert(1.0, "Neveljaven vnos")
             return 0
     temp = 0
     k = len(str(st)) - 1
@@ -188,7 +188,7 @@ def pretvori(st, baza1, baza2):
         if deli == 0:
             break
     rez = rez[::-1]
-    pretvorbaSt.insert(1.0, rez)
+    text_result.insert(1.0, rez)
     return rez
 
 counter = 0
@@ -201,56 +201,56 @@ def pretvorba():
     counter += 1
     print(counter) # test
     if counter == 1:
-        stev = pretvorbaSt.get(1.0, "end-1c")
+        stev = text_result.get(1.0, "end-1c")
         pocisti()
-        pretvorbaSt.delete(1.0, "end")
-        pretvorbaSt.insert(1.0, "Iz baze: ")
+        text_result.delete(1.0, "end")
+        text_result.insert(1.0, "Iz baze: ")
     elif counter == 2:
-        b1 = int(str(pretvorbaSt.get(1.0, "end-1c")).split(" ")[2]) # sketchy...
+        b1 = int(str(text_result.get(1.0, "end-1c")).split(" ")[2]) # sketchy...
         # pocisti()
-        pretvorbaSt.delete(1.0, "end")
-        pretvorbaSt.insert(1.0, "V bazo: ")
+        text_result.delete(1.0, "end")
+        text_result.insert(1.0, "V bazo: ")
         # preberi vnos in ga shrani v globalno spremenljivko
     elif counter == 3:
         counter = 0
-        b2 = int(str(pretvorbaSt.get(1.0, "end-1c")).split(" ")[2]) # sketchy...
+        b2 = int(str(text_result.get(1.0, "end-1c")).split(" ")[2]) # sketchy...
         # pocisti()
-        pretvorbaSt.delete(1.0, "end")
+        text_result.delete(1.0, "end")
         pretvori(stev, b1, b2)
 
 def l_and(tmp1, tmp2):
     rez = ""
     if len(tmp1) != len(tmp2):
-        pretvorbaSt.insert(1.0, "Števili nista iste dolžine!")
+        text_result.insert(1.0, "Števili nista iste dolžine!")
         return
     for i in range(len(tmp1)):
         rez += str(int(tmp1[i]) and int(tmp2[i]))
-    pretvorbaSt.insert(1.0, rez)
+    text_result.insert(1.0, rez)
     return rez
 
 def l_or(tmp1, tmp2):
     rez = ""
     if len(tmp1) != len(tmp2):
-        pretvorbaSt.insert(1.0, "Števili nista iste dolžine!")
+        text_result.insert(1.0, "Števili nista iste dolžine!")
         return
     for i in range(len(tmp1)):
         rez += str(int(tmp1[i]) or int(tmp2[i]))
-    pretvorbaSt.insert(1.0, rez)
+    text_result.insert(1.0, rez)
     return rez
 
 def l_xor(tmp1, tmp2):
     rez = ""
     if len(tmp1) != len(tmp2):
-        pretvorbaSt.insert(1.0, "Števili nista iste dolžine!")
+        text_result.insert(1.0, "Števili nista iste dolžine!")
         return
     for i in range(len(tmp1)):
         rez += str((int(not int(tmp1[i])) and int(tmp2[i])) or (int(tmp1[i]) and int(not int(tmp2[i]))))
-    pretvorbaSt.insert(1.0, rez)
+    text_result.insert(1.0, rez)
     return rez
 
 def l_nor(tmp1, tmp2):
     if len(tmp1) != len(tmp2):
-        pretvorbaSt.insert(1.0, "Števili nista iste dolžine!")
+        text_result.insert(1.0, "Števili nista iste dolžine!")
         return
     rez = ""
     vmes = l_or(tmp1, tmp2)
@@ -260,12 +260,12 @@ def l_nor(tmp1, tmp2):
         else:
             rez += "1"
     # pocisti()
-    pretvorbaSt.delete(1.0, "end")
-    pretvorbaSt.insert(1.0, rez)
+    text_result.delete(1.0, "end")
+    text_result.insert(1.0, rez)
 
 def l_nand(tmp1, tmp2):
     if len(tmp1) != len(tmp2):
-        pretvorbaSt.insert(1.0, "Števili nista iste dolžine!")
+        text_result.insert(1.0, "Števili nista iste dolžine!")
         return
     rez = ""
     vmes = l_and(tmp1, tmp2)
@@ -275,24 +275,24 @@ def l_nand(tmp1, tmp2):
         else:
             rez += "1"
     # pocisti()
-    pretvorbaSt.delete(1.0, "end")
-    pretvorbaSt.insert(1.0, rez)
+    text_result.delete(1.0, "end")
+    text_result.insert(1.0, rez)
 
 def neg():
     rez = ""
-    st = pretvorbaSt.get(1.0, "end-1c")
+    st = text_result.get(1.0, "end-1c")
     for i in st:
         if i == "1":
             rez += "0"
         else:
             rez += "1"
     # pocisti()
-    pretvorbaSt.delete(1.0, "end")
-    pretvorbaSt.insert(1.0, rez)
+    text_result.delete(1.0, "end")
+    text_result.insert(1.0, rez)
 
 def l_xnor(tmp1, tmp2):
     if len(tmp1) != len(tmp2):
-        pretvorbaSt.insert(1.0, "Števili nista iste dolžine!")
+        text_result.insert(1.0, "Števili nista iste dolžine!")
         return
     rez = ""
     vmes = l_xor(tmp1, tmp2)
@@ -302,13 +302,13 @@ def l_xnor(tmp1, tmp2):
         else:
             rez += "1"
     # pocisti()
-    pretvorbaSt.delete(1.0, "end")
-    pretvorbaSt.insert(1.0, rez)
+    text_result.delete(1.0, "end")
+    text_result.insert(1.0, rez)
 
 def sprozi():
-    tmp2 = pretvorbaSt.get(1.0, "end-1c")
+    tmp2 = text_result.get(1.0, "end-1c")
     # pocisti()
-    pretvorbaSt.delete(1.0, "end")
+    text_result.delete(1.0, "end")
     if n == 1:
         l_and(tmp1, tmp2)
     elif n == 2:
@@ -325,10 +325,20 @@ def sprozi():
 def nalozi(k):
     global tmp1
     global n
+    global counter
+    global baza
+    counter += 1
     n = k
-    tmp1 = pretvorbaSt.get(1.0, "end-1c")
-    # pocisti()
-    pretvorbaSt.delete(1.0, "end")
+    if counter == 1:
+        text_result.delete(1.0, "end")
+        text_result.insert(1.0, "Baza: ")
+    elif counter == 2:
+        baza = int(str(text_result.get(1.0, "end-1c")).split(" ")[1])
+        text_result.delete(1.0, "end")
+    elif counter == 3:
+        tmp1 = text_result.get(1.0, "end-1c")
+        text_result.delete(1.0, "end")
+        counter = 0
 
 
 #================================================ OSNOVNI KALKULATOR =============================================================
@@ -387,9 +397,9 @@ btn_brisiEnZnak.grid(row=8, column = 4)
 
 
 #================================================ LOGICNI OPERATORJI =============================================================
-pretvorbaSt = Text(logicniOperatorji, height=2, width=20, font=("Arial", 24))
-pretvorbaSt.tag_configure('tag-right', justify='right')
-pretvorbaSt.grid(columnspan=7)
+text_result = Text(logicniOperatorji, height=2, width=20, font=("Arial", 24))
+text_result.tag_configure('tag-right', justify='right')
+text_result.grid(columnspan=7)
 
 
 # 3. točka: LOGIČNE OPERACIJE
