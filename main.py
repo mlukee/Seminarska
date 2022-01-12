@@ -141,7 +141,7 @@ def odstrani_karakter():
 
 # 2. & 3. točka
 
-def pretvori(st, baza1, baza2):
+def pretvori(st, baza1, baza2, flag=True):
     for i in str(st):
         if i == "A":
             i = 10
@@ -197,7 +197,8 @@ def pretvori(st, baza1, baza2):
         if deli == 0:
             break
     rez = rez[::-1]
-    text_result.insert(1.0, rez)
+    if flag:
+        text_result.insert(1.0, rez)
     return rez
 
 counter = 0
@@ -208,22 +209,20 @@ def pretvorba():
     global b1
     global b2
     counter += 1
-    print(counter) # test
+    
     if counter == 1:
         stev = text_result.get(1.0, "end-1c")
-        pocisti()
         text_result.delete(1.0, "end")
         text_result.insert(1.0, "Iz baze: ")
     elif counter == 2:
         b1 = int(str(text_result.get(1.0, "end-1c")).split(" ")[2]) # sketchy...
-        # pocisti()
         text_result.delete(1.0, "end")
         text_result.insert(1.0, "V bazo: ")
         # preberi vnos in ga shrani v globalno spremenljivko
+        # string split: https://stackoverflow.com/questions/44384854/split-string-into-array-in-python
     elif counter == 3:
         counter = 0
         b2 = int(str(text_result.get(1.0, "end-1c")).split(" ")[2]) # sketchy...
-        # pocisti()
         text_result.delete(1.0, "end")
         pretvori(stev, b1, b2)
 
@@ -234,7 +233,8 @@ def l_and(tmp1, tmp2):
         return
     for i in range(len(tmp1)):
         rez += str(int(tmp1[i]) and int(tmp2[i]))
-    text_result.insert(1.0, rez)
+    rez_baza = pretvori(rez, 2, baza, False)
+    text_result.insert(1.0, rez_baza)
     return rez
 
 def l_or(tmp1, tmp2):
@@ -244,7 +244,8 @@ def l_or(tmp1, tmp2):
         return
     for i in range(len(tmp1)):
         rez += str(int(tmp1[i]) or int(tmp2[i]))
-    text_result.insert(1.0, rez)
+    rez_baza = pretvori(rez, 2, baza, False)
+    text_result.insert(1.0, rez_baza)
     return rez
 
 def l_xor(tmp1, tmp2):
@@ -254,7 +255,8 @@ def l_xor(tmp1, tmp2):
         return
     for i in range(len(tmp1)):
         rez += str((int(not int(tmp1[i])) and int(tmp2[i])) or (int(tmp1[i]) and int(not int(tmp2[i]))))
-    text_result.insert(1.0, rez)
+    rez_baza = pretvori(rez, 2, baza, False)
+    text_result.insert(1.0, rez_baza)
     return rez
 
 def l_nor(tmp1, tmp2):
@@ -268,9 +270,9 @@ def l_nor(tmp1, tmp2):
             rez += "0"
         else:
             rez += "1"
-    # pocisti()
     text_result.delete(1.0, "end")
-    text_result.insert(1.0, rez)
+    rez_baza = pretvori(rez, 2, baza, False)
+    text_result.insert(1.0, rez_baza)
 
 def l_nand(tmp1, tmp2):
     if len(tmp1) != len(tmp2):
@@ -283,21 +285,9 @@ def l_nand(tmp1, tmp2):
             rez += "0"
         else:
             rez += "1"
-    # pocisti()
     text_result.delete(1.0, "end")
-    text_result.insert(1.0, rez)
-
-def neg():
-    rez = ""
-    st = text_result.get(1.0, "end-1c")
-    for i in st:
-        if i == "1":
-            rez += "0"
-        else:
-            rez += "1"
-    # pocisti()
-    text_result.delete(1.0, "end")
-    text_result.insert('end', rez, 'tag-right')
+    rez_baza = pretvori(rez, 2, baza, False)
+    text_result.insert(1.0, rez_baza)
 
 def l_xnor(tmp1, tmp2):
     if len(tmp1) != len(tmp2):
@@ -310,14 +300,51 @@ def l_xnor(tmp1, tmp2):
             rez += "0"
         else:
             rez += "1"
-    # pocisti()
     text_result.delete(1.0, "end")
-    text_result.insert(1.0, rez)
+    rez_baza = pretvori(rez, 2, baza, False)
+    text_result.insert(1.0, rez_baza)
+
+def neg():
+    global counter
+    global baza
+    counter += 1
+    if counter == 1:
+        text_result.insert(1.0, "Baza: ")
+    elif counter == 2:
+        baza = int(str(text_result.get(1.0, "end-1c")).split(" ")[1])
+        text_result.delete(1.0, "end")
+    elif counter == 3:
+        counter = 0
+        rez = ""
+        st = str(text_result.get(1.0, "end-1c"))
+        st = str(pretvori(st, baza, 2, False))
+        for i in st:
+            if i == "1":
+                rez += "0"
+            else:
+                rez += "1"
+        text_result.delete(1.0, "end")
+        rez = str(pretvori(rez, 2, baza, False))
+        text_result.insert(1.0, rez)
 
 def sprozi():
+    global tmp1
+    global n
+    global baza
+
     tmp2 = text_result.get(1.0, "end-1c")
-    # pocisti()
+
     text_result.delete(1.0, "end")
+    tmp1 = str(pretvori(tmp1, baza, 2, False))
+    tmp2 = str(pretvori(tmp2, baza, 2, False))
+
+    if len(tmp1) > len(tmp2):
+        for _ in range(len(tmp1) - len(tmp2)):      # prepend: https://stackoverflow.com/questions/44792399/prepend-a-string-in-python
+            tmp2 = "0" + tmp2
+    elif len(tmp1) < len(tmp2):
+        for _ in range(len(tmp2) - len(tmp1)):
+            tmp1 = "0" + tmp1
+
     if n == 1:
         l_and(tmp1, tmp2)
     elif n == 2:
