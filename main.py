@@ -104,7 +104,7 @@ def izracunaj():
     racun =str(izpis) + " ="
     print("To je pred izracunom: "+ calculation)
     try:
-        calculation = str(eval(calculation))
+        calculation = str(round(eval(calculation),5))
         izracunano.insert(1.0,racun, 'tag-right')
         izracun.delete(1.0, "end")
         izracun.insert('end', calculation, 'tag-right')
@@ -135,12 +135,14 @@ def pocistiLogicnaVrata():
     izpis = ""
     text_result.delete(1.0, "end")    
 
-def odstrani_karakter():
-    global calculation
-    global izpis
-    izpis = izpis[:-1]
-    izracun.delete(1.0, "end")
-    izracun.insert(1.0, izpis)
+# def odstrani_karakter():
+#     global calculation
+#     global izpis
+#     izpis = izpis[:-1]
+#     calculation = calculation[:-1]
+#     print(calculation)
+#     izracun.delete(1.0, "end")
+#     izracun.insert(1.0, izpis)
 
 # 2. & 3. točka
 
@@ -453,8 +455,8 @@ btn_izracunaj = tk.Button(osnovniKalkulator, text="=", command=izracunaj, width=
 btn_izracunaj.grid(row=8, column = 1, columnspan=2)
 btn_pocisti = tk.Button(osnovniKalkulator, text="C", command=lambda: pocisti(), width=5, font=("Arial", 14))
 btn_pocisti.grid(row=8, column = 3)
-btn_brisiEnZnak = tk.Button(osnovniKalkulator, text="<=", command=lambda: odstrani_karakter(), width=5, font=("Arial", 14))
-btn_brisiEnZnak.grid(row=8, column = 4)
+# btn_brisiEnZnak = tk.Button(osnovniKalkulator, text="<=", command=lambda: odstrani_karakter(), width=5, font=("Arial", 14))
+# btn_brisiEnZnak.grid(row=8, column = 4)
 
 
 
