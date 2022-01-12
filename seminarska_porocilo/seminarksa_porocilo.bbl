@@ -16,5 +16,26 @@
   {}
 \endgroup
 
-\datalist[entry]{none/global//global/global}\enddatalist
+\datalist[entry]{none/global//global/global}
+  \entry{error}{misc}{}
+    \field{labeltitlesource}{title}
+  \field{howpublished}{\url{https://stackoverflow.com/questions/2140614/python-eval-error-suppression}}
+    \field{note}{(12. 1. 2022)}
+    \field{title}{Python eval error suppression}
+  \endentry
+
+  \entry{rtol}{misc}{}
+    \field{labeltitlesource}{title}
+  \field{howpublished}{\url{https://stackoverflow.com/questions/20306726/right-to-left-text-in-tkinter}}
+    \field{note}{(6. 1. 2022)}
+    \field{title}{Right to left text in tkinter}
+  \endentry
+
+  \entry{read}{misc}{}
+    \field{labeltitlesource}{title}
+  \field{howpublished}{\url{https://www.geeksforgeeks.org/read-a-file-line-by-line-in-python/}}
+    \field{note}{(6. 1. 2022)}
+    \field{title}{Read a file line by line in Python}
+  \endentry
+\enddatalist
 \endinput

@@ -1,10 +1,12 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \babel@toc {slovene}{}\relax 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1}Aritmetika}{1}{section.1}%
+\contentsline {section}{\numberline {1}Uvod}{1}{section.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2}Pretvarjanje med številskimi sistemi}{1}{section.2}%
+\contentsline {section}{\numberline {2}Aritmetika}{1}{section.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3}Logična vrata}{1}{section.3}%
+\contentsline {section}{\numberline {3}Pretvarjanje med številskimi sistemi}{2}{section.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4}Branje iz datoteke}{1}{section.4}%
+\contentsline {section}{\numberline {4}Logična vrata}{2}{section.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5}Branje iz datoteke}{2}{section.5}%

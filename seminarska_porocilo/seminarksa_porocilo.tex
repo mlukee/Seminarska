@@ -54,7 +54,32 @@
 	
 	{\hypersetup{hidelinks}\tableofcontents}
 	
+	\section{Uvod}
+	
+	Kalkulator sva razvijala v programskem jeziku Python. Za ta jezik sva se odločila zato,
+	ker je preprost in ima veliko različnih funkcij in knjižnic, ki so nama bile v pomoč pri
+	izdelavi kalkulatorja.
+	
+	Za izgled kalkulatorja oz.~za grafični vmesnik sva uporabila knjižnico Tkinter. Vključena je
+	v standardne namestitve Pythona. Z vključitvijo Tkinter knjižnice sva lahko v najino okno (okvir),
+	dodajala gumbe in zaslone za izpis.
+	
 	\section{Aritmetika}
+	
+	Najprej je bilo treba napisati kodo za kalkulator, ki vsebuje osnovne računske operacije, kot so
+	seštevanje, odštevanje, množenje in deljenje. Na srečo v jeziku Python obstaja funkcija \texttt{eval} (ang.~evaluate),
+	ki nam izračuna podan račun. Vhod v funkcijo je niz števil, funkcija pa nato izračuna in nam vrne vrednost niza. 
+	Toraj v funkcijo ne dajemo navadnih števil, ampak jih moramo pretvoriti v tip nizov (ang.~string).
+	Ima tudi možnost prepoznavanja semantičnih napak, kot je na primer deljenje z nič.\cite{error} Nato sva še dodala funkcije za
+	računanje korenov, potenciranje ter modul ali deljenje s celoštevilskim ostankom. Python sam po sebi ne zna
+	računati korenov ali potencirati števil, zato sva morala uvoziti knjižnico \texttt{math}. Na začetku sva imela samo eno
+	vrstico za vnos računa ter izpis rezultata, in da bi kalkulator bil preglednejši, sva dodala še eno vrstico.
+	Torej, ko uporabnik vnaša številke, jih program vnaša v spodnjo vrstico, kadar pa želi dobiti rezultat, klikne
+	na gumb \texttt{=}, s katerim program izračuna vrednost računa oz.~izraza, ga nato izpiše v zgornji vrstici, v spodnji pa
+	se izpiše rezultat. Spremenila sva tudi, kako se račun prikazuje na zaslon. Primarno se vsaka posamezna črka vpisuje
+	od leve proti desni, poravnava je v levo, midva pa sva naredila, da se številke vpisujejo od desne proti levi,\cite{rtol}
+	poravnava pa je v desno.
+	
 	
 	\section{Pretvarjanje med številskimi sistemi}
 	
@@ -62,8 +87,23 @@
 	
 	\section{Branje iz datoteke}
 	
-	%\pagebreak
+	Zadnja točka je bila branje datoteke z računi in jih rešiti. Imamo neko datoteko z računi na disku,
+	uporabnik pa to datoteko odpre v programu, in program mu izpiše rezultate računov. Za delo z datotekami v 
+	Pythonu sva morala dodati modul \texttt{filedialog} iz knjižnice Tkinter, s katerim sva lahko odpirala, zapirala ter
+	brala iz datotek. Najprej sva si morala v kalkulatorju oz.~v programu narediti novi zavihek Branje iz datotek.
+	To sva naredila zato, da je program preglednejši in je posledično z njim lažje delati. Ko sva naredila svoj zavihke za
+	delo z datotekami, sva v zavihku dodala zaslon, na katerega se izpiše vsebina datoteke ter rezultati, gumb s 
+	katerim lahko izbrava datoteko z diska, in še gumb, ki počisti zaslon. Ko uporabnik klikne na gumb
+	za odpiranje datoteke, se kliče funkcija \texttt{odpri\_txt}. Funkcija nato odpre raziskovalca (ang.~File Explorer) v
+	operacijskem sistemu Windows, kjer si lahko uporabnik izbere, iz katere datoteke bi rad prebral račune. Omejila sva
+	tudi datoteke, da so lahko samo tipa \texttt{.txt}, tj., da so tekstovne. Ko uporabnik izbere svojo datoteko, začne funkcija\cite{read} brati posamezne vrstice v datoteki in izpisovat rezultate. Ko pridemo do zadnje vrstice, v ozadju zapremo datoteko.
+
+%	[2]https://stackoverflow.com/questions/20306726/right-to-left-text-in-tkinter -6.1.2022
+%	[3]https://www.geeksforgeeks.org/read-a-file-line-by-line-in-python/ - 6.1.2022
+%	[4]https://stackoverflow.com/questions/2140614/python-eval-error-suppression 12.1.2022
 	
-	%\printbibliography
+	\pagebreak
+	
+	\printbibliography
 	
 \end{document}
