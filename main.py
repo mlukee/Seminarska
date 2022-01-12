@@ -4,34 +4,26 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog
 
-root = Tk()
-root.title("Kalkulator")
-root.geometry("375x350")
-
-ikona = PhotoImage(file='calculator_icon.png')
-root.iconphoto(True, ikona)
-
-moj_okvir = ttk.Notebook(root)
-moj_okvir.pack(pady=5)
-osnovniKalkulator = Frame(moj_okvir, width=400, height=450, bg ="gray")
-logicniOperatorji = Frame(moj_okvir, width=400, height=450, bg ="gray")
-deloZDatotekami = Frame(moj_okvir, width=400, height=400, bg="gray")
-
-osnovniKalkulator.pack(fill="both", expand=1)
-logicniOperatorji.pack(fill="both", expand=1)
-deloZDatotekami.pack(fill="both",expand=1)
-
-moj_okvir.add(osnovniKalkulator, text="Kalkulator")
-moj_okvir.add(logicniOperatorji, text="Logični operatorji")
-moj_okvir.add(deloZDatotekami, text="Branje iz datotek")
-
+from main import *
 
 def odpri_txt():
     datoteka = filedialog.askopenfilename(title="Odpri Datoteko", filetypes=(("Text Files", "*.txt"),)) #odpremo file explorer in zberemo datoteko
     datoteka = open(datoteka, 'r')
-    vsebina = datoteka.read()
-    beriDatoteko.insert(END, vsebina)
-    izracunaj_txt()
+    count = 0
+    while True:
+        count += 1
+        #Pridobim vrstico iz datoteke
+        vrstica = datoteka.readline()
+        if not vrstica:
+            break
+        racun = str(vrstica[:-1]) + " = "
+        # https://stackoverflow.com/questions/2140614/python-eval-error-suppression
+        try:
+            rezultat = (round(eval(vrstica), 4))
+        except (SyntaxError, NameError, TypeError, ZeroDivisionError):
+            rezultat = "Neresljivo"
+        vrstica = str(count) + ". " + racun + str(rezultat)
+        beriDatoteko.insert(END, vrstica + '\n')
     datoteka.close()
 
 calculation = ""
@@ -121,7 +113,6 @@ def izracunaj_txt():
     global zracunaj
     global vsebina
     racun = str(beriDatoteko.get(1.0, "end"))
-    izracunDatoteke.insert(1.0, eval(racun), "end")
 
 def pocisti():
     global calculation
@@ -131,7 +122,6 @@ def pocisti():
     izracun.delete(1.0, "end")
     izracunano.delete(1.0, "end")
     beriDatoteko.delete(1.0, "end")
-    izracunDatoteke.delete(1.0, "end")
 
 
     
@@ -360,6 +350,29 @@ def nalozi(k):
         counter = 0
 
 
+root = Tk()
+root.title("Kalkulator")
+root.geometry("375x350")
+
+ikona = PhotoImage(file='calculator_icon.png')
+root.iconphoto(True, ikona)
+
+moj_okvir = ttk.Notebook(root)
+moj_okvir.pack(pady=5)
+osnovniKalkulator = Frame(moj_okvir, width=400, height=450, bg ="gray")
+logicniOperatorji = Frame(moj_okvir, width=400, height=450, bg ="gray")
+deloZDatotekami = Frame(moj_okvir, width=400, height=400, bg="gray")
+
+osnovniKalkulator.pack(fill="both", expand=1)
+logicniOperatorji.pack(fill="both", expand=1)
+deloZDatotekami.pack(fill="both",expand=1)
+
+moj_okvir.add(osnovniKalkulator, text="Kalkulator")
+moj_okvir.add(logicniOperatorji, text="Logični operatorji")
+moj_okvir.add(deloZDatotekami, text="Branje iz datotek")
+
+
+
 #================================================ OSNOVNI KALKULATOR =============================================================
 izracunano = Text(osnovniKalkulator, height=1, width=24, font=("Arial", 20))
 izracun = Text(osnovniKalkulator, height=1, width=20, font=("Arial", 24))
@@ -471,15 +484,12 @@ btn_neg.grid(row=6, column=3) # vir za pisanje v okence: https://www.geeksforgee
 #================================================ DELO Z DATOTEKAMI =============================================================
 #5. tocka: Delo z datotekami
 
-izracunDatoteke = Text(deloZDatotekami, height=1, width=20, font=("Arial", 24))
-beriDatoteko = Text(deloZDatotekami, height=1, width=24, font=("Arial", 20))
-beriDatoteko.grid(columnspan=7)
-izracunDatoteke.grid(columnspan=7)
+beriDatoteko = Text(deloZDatotekami, height=8, width=33, font=("Arial", 15))
+beriDatoteko.grid(columnspan=12)
+
 
 btn_odpri = tk.Button(deloZDatotekami, text="Odpri Datoteko", command=lambda: odpri_txt(),font=("Arial", 11))
 btn_odpri.grid(row=3, column=0, columnspan=2)
-# btn_izracunajRacun = tk.Button(deloZDatotekami, text="Izracunaj", command=izracunaj_txt, font=("Arial", 11))
-# btn_izracunajRacun.grid(row=3, column=2, columnspan=2)
 btn_pocistiDat = tk.Button(deloZDatotekami, text="Clear", command=lambda: pocisti(), font=("Arial", 11))
 btn_pocistiDat.grid(row=3, column = 5)
 
