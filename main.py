@@ -16,13 +16,16 @@ def odpri_txt():
         vrstica = datoteka.readline()
         if not vrstica:
             break
-        racun = str(vrstica[:-1]) + " = "
+        if vrstica[-1] == '\n':
+            racun = str(vrstica[:-2])
+        else:
+            racun = str(vrstica[:-1])
         # https://stackoverflow.com/questions/2140614/python-eval-error-suppression
         try:
-            rezultat = (round(eval(vrstica), 4))
+            rezultat = (round(eval(racun), 4))
         except (SyntaxError, NameError, TypeError, ZeroDivisionError):
             rezultat = "Neresljivo"
-        vrstica = str(count) + ". " + racun + str(rezultat)
+        vrstica = str(count) + ". " + racun +" = " +str(rezultat)
         beriDatoteko.insert(END, vrstica + '\n')
     datoteka.close()
 
