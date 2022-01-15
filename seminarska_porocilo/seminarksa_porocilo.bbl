@@ -31,6 +31,59 @@
     \field{title}{Right to left text in tkinter}
   \endentry
 
+  \entry{dowhile}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=CA}{%
+         family={Chougule},
+         familyi={C\bibinitperiod},
+         given={Abhilasha},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CA1}
+    \strng{fullhash}{CA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{\url{https://www.educba.com/do-while-loop-in-python/}}
+    \field{note}{(30. 12. 2021)}
+    \field{title}{Do While Loop in Python}
+  \endentry
+
+  \entry{split}{misc}{}
+    \field{labeltitlesource}{title}
+  \field{howpublished}{\url{https://stackoverflow.com/questions/44384854/split-string-into-array-in-python}}
+    \field{note}{(31. 12. 2021)}
+    \field{title}{Split string into array in Python}
+  \endentry
+
+  \entry{prepend}{misc}{}
+    \field{labeltitlesource}{title}
+  \field{howpublished}{\url{https://stackoverflow.com/questions/44792399/prepend-a-string-in-python}}
+    \field{note}{(31. 12. 2021)}
+    \field{title}{Prepend a string in Python}
+  \endentry
+
+  \entry{global}{misc}{}
+    \field{labeltitlesource}{title}
+  \field{howpublished}{\url{https://www.w3schools.com/python/gloss_python_global_variables.asp}}
+    \field{note}{(15. 1. 2022)}
+    \field{title}{Python Global Variables}
+  \endentry
+
+  \entry{pret}{misc}{}
+    \field{labeltitlesource}{title}
+  \field{howpublished}{\url{https://www.rapidtables.com/convert/number/base-converter.html}}
+    \field{note}{(15. 1. 2022)}
+    \field{title}{RapidTables Base Converter}
+  \endentry
+
+  \entry{log}{misc}{}
+    \field{labeltitlesource}{title}
+  \field{howpublished}{\url{http://ambrsoft.com/MathCalc/LogicCalc/LogicOperations.htm}}
+    \field{note}{(15. 1. 2022)}
+    \field{title}{Logical operations calculator}
+  \endentry
+
   \entry{read}{misc}{}
     \field{labeltitlesource}{title}
   \field{howpublished}{\url{https://www.geeksforgeeks.org/read-a-file-line-by-line-in-python/}}

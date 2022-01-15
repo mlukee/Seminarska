@@ -69,7 +69,7 @@
 	Najprej je bilo treba napisati kodo za kalkulator, ki vsebuje osnovne računske operacije, kot so
 	seštevanje, odštevanje, množenje in deljenje. Na srečo v jeziku Python obstaja funkcija \texttt{eval} (ang.~evaluate),
 	ki nam izračuna podan račun. Vhod v funkcijo je niz števil, funkcija pa nato izračuna in nam vrne vrednost niza. 
-	Toraj v funkcijo ne dajemo navadnih števil, ampak jih moramo pretvoriti v tip nizov (ang.~string).
+	Torej v funkcijo ne dajemo navadnih števil, ampak jih moramo pretvoriti v tip nizov (ang.~string).
 	Ima tudi možnost prepoznavanja semantičnih napak, kot je na primer deljenje z nič.\cite{error} Nato sva še dodala funkcije za
 	računanje korenov, potenciranje ter modul ali deljenje s celoštevilskim ostankom. Python sam po sebi ne zna
 	računati korenov ali potencirati števil, zato sva morala uvoziti knjižnico \texttt{math}. Na začetku sva imela samo eno
@@ -83,7 +83,19 @@
 	
 	\section{Pretvarjanje med številskimi sistemi}
 	
+	Slednjega sva se lotila takole: uporabnik vnese število, ki ga želi pretvoriti, in pritisne gumb \texttt{PRET}. Nato vnese bazo, iz katere želi pretvoriti število (kalkulator tudi preveri, ali je morda vnos glede na bazo neustrezen, in to javi v okence). Ponovno pritisne \texttt{PRET} ter vnese bazo, v katero želi pretvoriti število (najin kalkulator ima implementirane baze od 2 do 16). Nato še zadnjič pritisne \texttt{PRET} in v okencu se mu izpiše rezultat.
+	
+	Pri tej točki si je vredno pogledati nekaj konkretnih tehničnih ovir, na katere sva naletela. Za primer, morala sva emulirati zanko \texttt{do \{...\} while}, ki ni vgrajena v jeziku Python.\cite{dowhile} V glavnem je funkcija za pretvarjanje delovala na nizih, zato sva se morala pozanimati tudi o določenih metodah na nizih, ki jih ponuja Python.\cite{split, prepend} Najzahtevnejši del implementacije je bilo verjetno usklajevanje delovanja programa z vmesnikom. Ker se funkcija, lastna gumbu \texttt{PRET}, kliče večkrat, sva morala nekako shraniti stanje, ki je rezultat vsakega klica, ter ga naslednji klic na nek način uporabi. To sva naredila z rezervirano besedo \texttt{global},\cite{global} ki spremenljivko v funkciji spremeni v globalno spremenljivko, do katere lahko dostopajo tudi drugi klici funkcije. Natančneje, ko kliknemu gumb \texttt{PRET}, se sproži funkcija \texttt{pretvorba} prvič, in izpiše poizvedbo za bazo, iz katere pretvarjamo, poleg tega pa se shrani število, ki je bilo prej v okencu. Pri drugem kliku se shrani prva baza, v okencu pa se izpiše poizvedba za drugo bazo. Pri tretjem kliku se sproži funkcija \texttt{pretvori}, ki iz začetnega števila in obeh baz izračuna rezultat, ter ga izpiše v okencu.
+	
+	Seveda je bilo potrebno rezultate testirati ter tako preveriti, ali je koda napisana pravilno. To sva storila z enim od spletnih pretvornikov med bazami.\cite{pret}
+	
 	\section{Logična vrata}
+	
+	Implementirala sva logične operacije NEG, AND, OR, XOR, NOR, XNOR in NAND, ki delujejo nad bazami od 2 do 16. Uporabnik brez predhodnega vnosa klikne na želeno logično operacijo in izpiše se mu poizvedba za bazo, v kateri naj bodo argumenti logične operacije. Vnese želeno bazo in ponovno klikne isti gumb. Vnese prvo število (če je operacija dvomestna) in ponovno klikne gumb. Potem vnese drugo število in klikne gumb \texttt{=}, ki ovrednoti logično operacijo glede na podana argumenta ter izpiše rezultat. Med operacijami je NEG posebnost, saj je ne ovrednotimo z \texttt{=}, pač pa trikrat kliknemo na njen gumb: prvič za vnos baze, drugič za vnos števila, in tretjič za ovrednotenje negacije.
+	
+	Sprogramirala sva tudi samodejno dodeljevanje ničel na začetku krajšega od dveh števil (pri dvomestnih logičnih operacijah), da je možno ovrednotiti logični izraz s poljubno velikima številoma v argumentih. (Ker celoten postopek v ozadju deluje na podlagi bitnih polj, bi bilo seveda nemogoče ovrednotiti dve števili, ki v binarnem zapisu ne bi bili iste dolžine.) Programerska rešitev za logična vrata deluje precej podobno, kot rešitev pretvorbe med bazami. Znova sva se poslužila pogoste uporabe ključne besede \texttt{global}, novost pa je bila to, da se je izraz ovrednotil preko dveh gumbov namesto enega samega. Zato ima vsak od gumbov za logične operatorje nase vezano funkcijo \texttt{nalozi(k)}, ki nastavi globalno spremenljivko glede na \texttt{k}. Na gumb \texttt{=} je vezana funkcija \texttt{sprozi}, ki zažene primerno funkcijo za ovrednotenje in izpis logične operacije glede na nastavljeno globalno spremenljivko. Naj omeniva tudi, da je bila funkcija \texttt{pretvori} iz prejšnjega razdelka pri logičnih vratih v veliko pomoč, saj sva z njo pretvarjala vnešena števila v poljubnem številskem sistemu v bitna polja, jih ovrednotila, ter nazadnje pretvorila nazaj v prvoten številski sistem. Ker funkcija \texttt{pretvori} privzeto izpisuje na zaslon, sva ji dodala četrti argument, ki v primeru nastavitve \texttt{False} ne izpiše ničesar, pač pa le izračuna želeno vrednost.
+	
+	Tudi ta del aplikacije sva testirala z določenim spletnim orodjem.\cite{log}
 	
 	\section{Branje iz datoteke}
 	

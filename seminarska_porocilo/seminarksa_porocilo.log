@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.9.16)  12 JAN 2022 21:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.9.16)  15 JAN 2022 12:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -772,52 +772,58 @@ File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.100 
+l.87 	
        [1
 
-] [2]
+] [2] [3]
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 1
-07.
+19.
  (c:/texlive/2021/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
-07.
+19.
 
 (c:/texlive/2021/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-107.
+119.
 
 (c:/texlive/2021/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-107.
+119.
 
 (c:/texlive/2021/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 107.
+(Font)              <12> on input line 119.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 107.
+(Font)              <8> on input line 119.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 107.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 107
+(Font)              <6> on input line 119.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 119
 .
 
 (c:/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 107
+LaTeX Font Info:    Trying to load font information for U+msb on input line 119
 .
 
 (c:/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [3]
-(./seminarksa_porocilo.aux)
+)
+Overfull \hbox (42.2667pt too wide) in paragraph at lines 120--120
+[]\T1/lmr/m/it/12 Logical ope-ra-ti-ons cal-cu-la-tor\T1/lmr/m/n/12 . [][]$\T1/
+lmtt/m/n/12 http : / / ambrsoft . com / MathCalc / LogicCalc / LogicOperations 
+.
+ []
+
+[4] (./seminarksa_porocilo.aux)
 Package rerunfilecheck Info: File `seminarksa_porocilo.out' has not changed.
 (rerunfilecheck)             Checksum: A305E77B70485C39F1C2673FB3820262;644.
 Package logreq Info: Writing requests to 'seminarksa_porocilo.run.xml'.
@@ -825,10 +831,10 @@ Package logreq Info: Writing requests to 'seminarksa_porocilo.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 18367 strings out of 478599
- 305218 string characters out of 5858101
- 822072 words of memory out of 5000000
- 35987 multiletter control sequences out of 15000+600000
+ 18395 strings out of 478599
+ 306004 string characters out of 5858101
+ 825358 words of memory out of 5000000
+ 36008 multiletter control sequences out of 15000+600000
  442337 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,5n,66p,1854b,1518s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -836,10 +842,10 @@ Here is how much of TeX's memory you used:
 mf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2021/texmf-dist/fonts/type
 1/public/lm/lmr12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri12.
 pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on seminarksa_porocilo.pdf (4 pages, 108099 bytes).
+Output written on seminarksa_porocilo.pdf (5 pages, 120224 bytes).
 PDF statistics:
- 88 PDF objects out of 1000 (max. 8388607)
- 73 compressed objects within 1 object stream
- 14 named destinations out of 1000 (max. 500000)
+ 118 PDF objects out of 1000 (max. 8388607)
+ 101 compressed objects within 2 object streams
+ 21 named destinations out of 1000 (max. 500000)
  41 words of extra memory for PDF output out of 10000 (max. 10000000)
 
